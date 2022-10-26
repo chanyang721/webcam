@@ -26,6 +26,7 @@ function sendImage () {
         const dataURL = canvas.toDataURL("image/png"); // 이미지 가져오기
         const decodeImg = atob(dataURL.split(',')[1]);
 
+
         let array = [];
         for (let i = 0; i < decodeImg.length; i++) {
             array.push(decodeImg.charCodeAt(i));
@@ -37,9 +38,10 @@ function sendImage () {
         formData.append('file', file, fileName);
 
         dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-        
+        console.log(dataURL)
+
         // 요청
-        fetch('http://example.com/movies.json', {
+        fetch('https://tiqr86ropk.execute-api.ap-northeast-2.amazonaws.com/cors_test/test', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -47,13 +49,13 @@ function sendImage () {
                 body: JSON.stringify(dataURL) || null,
             })
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                alert("Successfully sent the image");
+                console.log(data)
+            })
             .catch((error) => {
+                alert("Failed to send the image");
                 console.error('실패:', error);
             });
-
-
-        alert("이미지 서버로 전송 성공")
     }
-
 }
