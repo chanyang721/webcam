@@ -5,6 +5,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "start": "ngrok http 5500 --authtoken=2GZDL0HZRMlWFseGCV1y3e04yyB_6oxV6D585gRh7vcPF8Ynf",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
